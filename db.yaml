@@ -4,15 +4,17 @@
   vars:
     login_host: db.vinaydevops.online
   tasks:
-  - name: Install Mysql server
+  - name: Install MySQL server
     ansible.builtin.dnf:
      name: mysql-server
      state: latest 
-  - name: start and enable MySQL server
+
+  - name: start and Enable MySQL server
     ansible.builtiin.service:
       name: mysqld
       state: started
       enabled: yes
+       
   # check password is already setup or not
   - name: check DB connection
     community.mysql.mysql_info:
@@ -23,7 +25,7 @@
     ignore_errors: yes
     register: mysql_connection_ouput
 
-- name: print output
-  ansible.builtin.debug:
-   msg: "output: {{mysql_connection_output}}"
+  - name: print output
+    ansible.builtin.debug:
+    msg: "output: {{mysql_connection_output}}"
 

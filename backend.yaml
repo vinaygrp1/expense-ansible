@@ -55,10 +55,10 @@
       executable: pip3.9
   - name: import data into msyql
     community.mysql.mysql_db:
-      ogin_user: root
+      login_user: root
       login_password: "{{login_password}}"
       login_host: "{{ login_host }}"
       target: /app/schema/backend.sql
       state: import
       name: all # what we have data everything dump
-      
+

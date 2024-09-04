@@ -2,7 +2,7 @@
   become: yes
   hosts: backend
   vars:
-    login_host: db.vinaydevops.online
+    login_host: 'db.vinaydevops.online'
     login_password: ExpenseApp@1
   tasks:
   - name: disable default nodejs
@@ -64,10 +64,11 @@
       target: /app/schema/backend.sql
       state: import
       name: all # what we have data everything dump
+  
   - name: daemon reload
     ansible.builtin.systemd_service:
       daemon_reload: true
-      
+
   
 
 

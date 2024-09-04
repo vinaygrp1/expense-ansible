@@ -4,7 +4,6 @@
   vars:
     login_host: db.vinaydevops.online
     login_password: ExpenseApp@1
-
   tasks:
   - name: disable default nodejs
     ansible.builtin.command: dnf module disable nodejs -y
@@ -14,8 +13,11 @@
 
   - name: install nodejs
     ansible.builtin.dnf: # only work for redhat family
-      name: nodejs
+      name: "{item}"
       state: installed
+    loop:
+    - nodejs
+    - mysql
   
   - name: create expense user
     ansible.builtin.user:
@@ -63,6 +65,6 @@
       state: import
       name: all # what we have data everything dump
   
-  
+
 
 

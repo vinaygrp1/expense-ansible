@@ -69,7 +69,15 @@
     ansible.builtin.systemd_service:
       daemon_reload: true
 
+  - name: copy backend cong
+    ansible.biltin.copy:
+      src: expense.cong
+      dest: etc/nginx/default.d/expense.conf
   
+  - name: restat nginx
+    ansible.builtin.service:
+      name: nginx
+      state: restarted 
 
 
 

@@ -13,7 +13,7 @@
 
   - name: install nodejs
     ansible.builtin.dnf: # only work for redhat family
-      name: "{item}"
+      name: "{{item}}"
       state: installed
     loop:
     - nodejs

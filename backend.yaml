@@ -2,6 +2,8 @@
   become: yes
   hosts: backend
   vars:
+    login_host: db.vinaydevops.online
+    login_password: ExpenseApp@1
 
   tasks:
   - name: disable default nodejs
@@ -45,4 +47,18 @@
       src: backend.service
       dest: /etc/systemd/system/backend.service  
 
-          
+  - name: install python mysql dependencies
+    ansible.builtin.pip:
+      name:
+      - PyMySQL # to connect MySQL DB from Ansible
+      - cryptography
+      executable: pip3.9
+  - name: import data into msyql
+    community.mysql.mysql_db:
+      ogin_user: root
+      login_password: "{{login_password}}"
+      login_host: "{{ login_host }}"
+      target: /app/schema/backend.sql
+      state: import
+      name: all # what we have data everything dump
+      

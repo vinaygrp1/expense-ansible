@@ -53,6 +53,7 @@
       - PyMySQL # to connect MySQL DB from Ansible
       - cryptography
       executable: pip3.9
+
   - name: import data into msyql
     community.mysql.mysql_db:
       login_user: root
